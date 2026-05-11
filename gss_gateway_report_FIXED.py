@@ -547,7 +547,7 @@ def generate_pdf(config: dict, filename: str, report_date: str, serial: str) -> 
         # Header text (right side)
         canvas_obj.setFont('Helvetica-Bold', 9)
         canvas_obj.setFillColor(colors.white)
-        canvas_obj.drawRightString(w - 18*mm, h - 13*mm, 'GATEWAY CONFIGURATION REPORT')
+        canvas_obj.drawRightString(w - 18*mm, h - 13*mm, 'GATEWAY CALIBRATION REPORT')
         canvas_obj.setFont('Helvetica', 7.5)
         canvas_obj.setFillColor(LIGHTBLUE)
         canvas_obj.drawRightString(w - 18*mm, h - 19.5*mm, f'S/N: {serial}  |  {report_date}')
@@ -561,7 +561,7 @@ def generate_pdf(config: dict, filename: str, report_date: str, serial: str) -> 
         canvas_obj.setFillColor(LIGHTBLUE)
         canvas_obj.setFont('Helvetica', 7)
         canvas_obj.drawString(18*mm, 4.5*mm,
-            'CONFIDENTIAL — For authorized personnel only. Global Supplies Solutions.')
+            'Global Supplies Solutions.')
         canvas_obj.setFillColor(colors.white)
         canvas_obj.setFont('Helvetica-Bold', 7.5)
         canvas_obj.drawRightString(w - 18*mm, 4.5*mm, f'Page {doc.page}')
@@ -611,10 +611,10 @@ def generate_pdf(config: dict, filename: str, report_date: str, serial: str) -> 
         except Exception:
             pass
 
-    story.append(Paragraph('GATEWAY CONFIGURATION REPORT', sLabel))
+    story.append(Paragraph('GATEWAY CALIBRATION REPORT', sLabel))
     story.append(Paragraph('CAN / Ethernet Gateway', sTitle))
     story.append(Paragraph(
-        f'Global Supplies Solutions — Technical Configuration Document  |  S/N: {serial}',
+        f'Global Supplies Solutions — Technical Calibration Document  |  S/N: {serial}',
         sSubtitle))
     story.append(HRFlowable(width='100%', thickness=2, color=TEAL, spaceAfter=10))
 
@@ -709,7 +709,7 @@ def generate_pdf(config: dict, filename: str, report_date: str, serial: str) -> 
 
     # ─── 1. CAN INTERFACE CONFIGURATION ────
     story.append(PageBreak())
-    section_header('1.  CAN INTERFACE CONFIGURATION')
+    section_header('1.  CAN INTERFACE CALIBRATION')
     story.append(Paragraph(
         'Six CAN bus interfaces are available (CAN0 through CAN5). '
         'The table below details the baudrate, auto-detection, termination resistance, '
@@ -918,7 +918,7 @@ def generate_pdf(config: dict, filename: str, report_date: str, serial: str) -> 
         ['Total CAN Interfaces',  '6 (CAN0–CAN5)'],
         ['Total Filter Slots',    '60 (10 per interface)'],
         ['Total Routing Slots',   '60 (10 per interface)'],
-        ['Gateway Status',        'FULLY CONFIGURED — Ready for Deployment'],
+        ['Gateway Status',        'FULLY CALIBRATED — Ready for Deployment'],
     ]
     doc_col_widths = [72*mm, 100*mm]
     doc_style = TableStyle([
@@ -945,7 +945,7 @@ def generate_pdf(config: dict, filename: str, report_date: str, serial: str) -> 
     story.append(Paragraph(
         'The information contained herein reflects the exact parameters stored in the gateway '
         'at the time of configuration. Any subsequent changes to the device will require '
-        'a new configuration report.',
+        'a new calibration report.',
         sNote))
 
     doc.build(story, onFirstPage=add_header_footer, onLaterPages=add_header_footer)
@@ -962,7 +962,7 @@ def render_header():
         <div style="flex-shrink:0;">{LOGO_HTML}</div>
         <div class="header-text">
             <div class="header-badge">Global Supplies Solutions</div>
-            <h1>Gateway Configuration Report</h1>
+            <h1>Gateway Calibration Report</h1>
             <p>CAN / Ethernet Gateway — Configuration Analysis &amp; Export Tool</p>
         </div>
     </div>
